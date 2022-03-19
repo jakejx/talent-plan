@@ -4,10 +4,32 @@ package raftpb;
 
 // Example RequestVote RPC arguments structure.
 message RequestVoteArgs {
-    // Your data here (2A, 2B).
+  // candidates term.
+  int64 term = 1;
+  // candidate id.
+  int64 candidateId = 2;
+  // index of the candidates last log entry.
+  int64 lastLogIndex = 3;
+  // term of the candidates last log entry.
+  int64 lastLogTerm = 4;
 }
 
 // Example RequestVote RPC reply structure.
 message RequestVoteReply {
-    // Your data here (2A).
+  // current term of the receiver.
+  // used to update the sender, when the receiver has a higher term than the
+  // sender.
+  int64 term = 1;
+  // true means the reciver voted for the candidate.
+  bool voted = 2;
+}
+
+message AppendEntriesArgs {
+  int64 term = 1;
+  int64 leaderId = 2;
+}
+
+message AppendEntriesReply {
+  int64 term = 1;
+  bool success = 2;
 }

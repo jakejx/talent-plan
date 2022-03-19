@@ -29,6 +29,7 @@ fn test_initial_election_2a() {
     let servers = 3;
     let mut cfg = Config::new(servers);
 
+    info!("starting tests");
     cfg.begin("Test (2A): initial election");
 
     // is a leader elected?
